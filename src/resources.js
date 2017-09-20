@@ -2,7 +2,7 @@ const debug = process.env.NODE_ENV === 'development' ? true : false;
 // 测试环境地址
 if (true) {
     // var host = 'https://api.guangyangyundong.com/api';
-    var host = 'http://120.77.72.16:8080/api';
+    var host = 'http://sport.o-xugroup.com/api';
 } else {
     //正式环境地址
     var host = 'https://api.guangyangyundong.com/api';
