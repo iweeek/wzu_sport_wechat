@@ -68,7 +68,7 @@
 					page = page.replace(hash, '#/home');
 				
 
-				var redirectUri = "https://api.guangyangyundong.com/api/users/wechatAuth";
+				var redirectUri = "https://sport.o-xugroup.com/api/users/wechatAuth";
 				redirectUri = encodeURIComponent(redirectUri);
 				page = "?page=" + encodeURIComponent(page);
 				page = encodeURIComponent(page);
@@ -76,7 +76,7 @@
 				// var appId = "wx2c8f990778df47a3";//欧旭的账号
 				alert(page);
 				alert(redirectUri)
-				window.location.href = 'http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8e8661fdfc08da2d&redirect_uri='
+				window.location.href = 'http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2c8f990778df47a3&redirect_uri='
 					+  redirectUri + page + '&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
 			}
 
