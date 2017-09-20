@@ -128,6 +128,7 @@
 								alert(e)
 							}
 						} else {
+							alert(JSON.stringify(res.data.data));
 							_this.verifyError = true;
 						}
 					});
