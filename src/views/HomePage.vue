@@ -21,8 +21,28 @@
 			<label>再次输入密码</label>
 			<input min="6" max="12" size="large" type="password" v-model="loginForm.rePassword" placeholder="请输入6~12位，包含英文或者数字的密码">
 			<p v-if="passError" class="error-msg">{{passErrorMsg}}</p>
+			<p class="protocol">
+				<el-checkbox v-model="agree"></el-checkbox>
+				我已认真阅读并接受光氧运动的 <a href="javascript:;" @click="agreeVisible = true">《用户协议》</a>
+			</p>
+			<el-dialog
+				title="用户协议"
+				:visible.sync="agreeVisible"
+				size="large">
+				<span class="agree-content">《腾讯游戏许可及服务协议》（以下简称“本协议”）由您与腾讯游戏服务提供方共同缔结，本协议具有合同效力。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制腾讯责任的条款、对用户权利进行限制的条款、约定争议解决方式和司法管辖的条款，以及开通或使用某项服务的单独协议。前述限制、免责及争议解决方式和管辖条款可能以黑体加粗或其他合理方式提示您注意。
+						除非您已阅读并接受本协议所有条款，否则您无权使用腾讯游戏服务。您使用腾讯游戏服务即视为您已阅读并同意签署本协议。
+						如果您未满18周岁，请在法定监护人的陪同下阅读本协议，并特别注意未成年人使用条款。
+						一、【定义】
+						1.1 本协议：指本协议正文、《腾讯服务协议》、《QQ号码规则》、游戏规则及其修订版本。上述内容一经正式发布，即为本协议不可分割的组成部分。本协议同时还包括文化部根据《网络游戏管理暂行办法》（文化部令第49号）制定的《网络游戏服务格式化协议必备条款》。
+						1.2 游戏规则：指腾讯游戏服务提供方不时发布并修订的关于腾讯游戏的用户守则、玩家条例、游戏公告及通知等内容。
+						1.3 腾讯游戏服务提供方：指向您提供腾讯游戏及其服务的深圳市腾讯计算机系统有限公司，在本协议中简称为“腾讯”。
+						1.4 腾讯游戏：指由腾讯负责运营的游戏的统称，包括计算机客户端游戏、网页游戏、HTML5游戏（H5游戏）、移动终端游戏、电视端游戏以及其他形式的游戏；腾讯游戏可能以软件形式提供，这种情况下，腾讯游戏还包括该相关软件及相关文档。
+						1.5 腾讯游戏服务：指腾讯向您提供的与游戏相关的各项在线运营服务。
+						1.6 您：又称“玩家”或“用户”，指被授权使用腾讯游戏及其服务的自然人。
+						1.7 游戏数据：指您在使用腾讯游戏过程中产生的被服务器记录的各种数据，包括游戏日志、安全日志等数据。</span>
+			</el-dialog>
 		</div>
-		<button @click="step == 1 ? next() : submit()" v-bind:disabled="isLoading">{{step == 1 ? '下一步' : '提交'}}</button>
+		<el-button @click="step == 1 ? next() : submit()" :disabled="isLoading || (step == 2 && !agree) ">{{step == 1 ? '下一步' : '提交'}}</el-button>
 	</div>
 </template>
 
@@ -61,7 +81,9 @@
 			return {
 				step: 1,
 				openid: '',
+				agreeVisible: false,
 				isLoading: false,
+				agree: false, 
 				universities: [],
 				loginForm: {
 					// 测试账号: 15210231110 name: 林金鸿
@@ -253,8 +275,8 @@
 		button {
 			width: 95%;
 			height: 35px;
-			background: #fff;
-			border: 1px solid #ccc;
+			/* background: #fff;
+			border: 1px solid #ccc; */
 			border-radius: 12px;
 			outline: none;
 			margin: 0 auto;
@@ -313,6 +335,21 @@
 			font-size: 12px;
 			color: #59f4df;
 			margin: 5px;
+		}
+		.protocol {
+			font-size: 12px;
+			color: #fff;
+			a {
+				color: #fff;
+			}
+			label {
+				display: inline-block;
+			}
+		}
+		.agree-content {
+			height: 390px;
+			overflow: auto;
+			display: inline-block;
 		}
 	}
 </style>
