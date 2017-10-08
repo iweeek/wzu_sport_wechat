@@ -23,13 +23,11 @@
 			<p v-if="passError" class="error-msg">{{passErrorMsg}}</p>
 			<p class="protocol">
 				<el-checkbox v-model="agree"></el-checkbox>
-				我已认真阅读并接受光氧运动的 <a href="javascript:;" @click="agreeVisible = true">《用户协议》</a>
+				我已认真阅读并接受光氧运动的 <a href="javascript:;" @click="openDialog()">《用户协议》</a>
 			</p>
-			<el-dialog
-				title="用户协议"
-				:visible.sync="agreeVisible"
-				size="large">
-				<span class="agree-content">《腾讯游戏许可及服务协议》（以下简称“本协议”）由您与腾讯游戏服务提供方共同缔结，本协议具有合同效力。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制腾讯责任的条款、对用户权利进行限制的条款、约定争议解决方式和司法管辖的条款，以及开通或使用某项服务的单独协议。前述限制、免责及争议解决方式和管辖条款可能以黑体加粗或其他合理方式提示您注意。
+			<el-dialog title="用户协议" :visible.sync="agreeVisible" size="large">
+				<div class="agree-content" id="agree-content">
+					《腾讯游戏许可及服务协议》（以下简称“本协议”）由您与腾讯游戏服务提供方共同缔结，本协议具有合同效力。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制腾讯责任的条款、对用户权利进行限制的条款、约定争议解决方式和司法管辖的条款，以及开通或使用某项服务的单独协议。前述限制、免责及争议解决方式和管辖条款可能以黑体加粗或其他合理方式提示您注意。
 						除非您已阅读并接受本协议所有条款，否则您无权使用腾讯游戏服务。您使用腾讯游戏服务即视为您已阅读并同意签署本协议。
 						如果您未满18周岁，请在法定监护人的陪同下阅读本协议，并特别注意未成年人使用条款。
 						一、【定义】
@@ -39,7 +37,11 @@
 						1.4 腾讯游戏：指由腾讯负责运营的游戏的统称，包括计算机客户端游戏、网页游戏、HTML5游戏（H5游戏）、移动终端游戏、电视端游戏以及其他形式的游戏；腾讯游戏可能以软件形式提供，这种情况下，腾讯游戏还包括该相关软件及相关文档。
 						1.5 腾讯游戏服务：指腾讯向您提供的与游戏相关的各项在线运营服务。
 						1.6 您：又称“玩家”或“用户”，指被授权使用腾讯游戏及其服务的自然人。
-						1.7 游戏数据：指您在使用腾讯游戏过程中产生的被服务器记录的各种数据，包括游戏日志、安全日志等数据。</span>
+						1.7 游戏数据：指您在使用腾讯游戏过程中产生的被服务器记录的各种数据，包括游戏日志、安全日志等数据。
+				</div>
+				<span slot="footer" class="dialog-footer">
+					<el-button :disabled="!isBottom" @click="agreeProtocol()">同意协议</el-button>
+				</span>
 			</el-dialog>
 		</div>
 		<el-button @click="step == 1 ? next() : submit()" :disabled="isLoading || (step == 2 && !agree) ">{{step == 1 ? '下一步' : '提交'}}</el-button>
@@ -50,6 +52,7 @@
 	import resources from '../resources'
 	import md5 from 'js-md5'
 	import { Loading, Message } from 'element-ui'
+	import $ from 'jquery'
 
 	const universitiesQuery = `
 	{
@@ -96,7 +99,8 @@
 				userId: '',
 				verifyError: false, // 学号与姓名验证结果
 				passError: false,
-				passErrorMsg: ''
+				passErrorMsg: '',
+				isBottom: false,
 			}
 		},
 		watch: {
@@ -201,6 +205,24 @@
 				})
 
 			},
+			openDialog() {
+				let _this = this;
+				this.agreeVisible = true;
+				setTimeout(function() {
+					document.getElementById("agree-content").addEventListener("scroll", function(){
+						var $this = $(this),
+						viewH = $this.height(),//可见高度  
+						contentH = $this.get(0).scrollHeight,//内容高度  
+						scrollTop = $this.scrollTop();//滚动高度  
+						if(scrollTop / (contentH - viewH) >= 0.95){ //到达底部100px时,加载新内容  
+							_this.isBottom = true;
+						} 
+					});
+				}, 200);
+			},
+			agreeProtocol() {
+				this.agreeVisible = false;this.agree = true;
+			}
 		},
 		mounted: function () {
 			this.getUniversities();
