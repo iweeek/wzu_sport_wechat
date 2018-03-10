@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from './views/HomePage.vue'
 import HelpCenterPage from './views/HelpCenterPage.vue'
+import PhysicalPage from './views/Physical.vue'
+
 
 let routes = [
     {
@@ -17,15 +19,22 @@ let routes = [
         hidden: true
     },
     {
+        path: '/physical',
+        component: PhysicalPage,
+        name: '体侧成绩',
+        hidden: true
+    },
+    {
         path: '/',
-        redirect: { path: '/index.html' },
+        component: HomePage,
+        // redirect: { path: '/index.html' },
         hidden: true
     }
 ];
 
 Vue.use(VueRouter)
 const router = new VueRouter({
-	routes
+    routes
 })
 
 router.beforeEach((to, from, next) => {
