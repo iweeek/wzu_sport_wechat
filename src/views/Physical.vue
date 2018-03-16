@@ -1,8 +1,8 @@
 <template>
 	<div class="wechat-page">
-		<mt-cell title="标题文字"></mt-cell>
-        <mt-cell title="标题文字" v-model="physicalTest.studentName"></mt-cell>
-        <mt-cell title="性别" v-model="physicalTest.isMan"></mt-cell><mt-cell title="标题文字" v-model="physicalTest.studentName"></mt-cell>
+		<!-- <mt-cell title="标题文字"></mt-cell> -->
+        <mt-cell title="姓名" v-model="physicalTest.studentName"></mt-cell>
+        <mt-cell title="性别" v-model="physicalTest.isMan"></mt-cell>
         <mt-cell title="学号" v-model="physicalTest.studentNo"></mt-cell>
         <mt-cell title="大学" v-model="physicalTest.collegeName"></mt-cell>
         <mt-cell title="班级" v-model="physicalTest.className"></mt-cell>
@@ -18,9 +18,9 @@
         <mt-cell title="800米" v-model="physicalTest.eightHundredRunTime"></mt-cell>
         <mt-cell title="1000米" v-model="physicalTest.oneThousandRunTime"></mt-cell>
         <mt-cell title="总分" v-model="physicalTest.totalScore"></mt-cell>
-        <mt-cell title="标题文字" is-link>
+        <!-- <mt-cell title="标题文字" is-link>
             <span style="color: green">这里是元素</span>
-        </mt-cell>
+        </mt-cell> -->
 	</div>
 </template>
 
@@ -171,7 +171,7 @@
 				}
 				return '';
             }
-            
+            console.log("OPEN-ID：");
             console.log(this.openid);
 		}
 	}
