@@ -115,21 +115,15 @@
 			}
 		},
 		watch: {
-			// 'loginForm': {
-			// 	handler: function (val, oldval) {
-			// 		this.isLoading = false;
-			// 		this.verifyError = false;
-			// 		this.passError = false;
-			// 	},
-			// 	deep: true //对象内部的属性监听，也叫深度监听  
-			// }
 		},
 		methods: {
-			getDate(){
+			getData(){
+                console.log("OPEN-ID：");
+                console.log(this.openid);
+
                 let params = {
-                    // "universityId": this.universityId,
-                    // "pageSize": this.pageSize,
-                    "openId": 'oLxAo1WXomMKIBLyVjLQ1f_P19ug'
+                    "openId": this.openid
+                    // "openId": this.openid
                 };
                 let _this = this;
                 this.loading = true;
@@ -139,16 +133,20 @@
                                 variables: params
                     })
                     .then(res => {
+                        console.log(res);
                         this.loading = false;
-                        // _this.dataCount = res.data.data.allstudents.dataCount;
                         this.physicalTest = res.data.data.allstudents;
-                        // console.log(this.physicalTest);
+                        if (this.physicalTest.isMan) {
+                            this.physicalTest.isMan = '男';
+                        } else {
+                            this.physicalTest.isMan = '女';
+                        }
                     });
             },
 			
 		},
 		mounted: function () {
-            this.getDate();
+            
 			this.openid = getQueryString('openid') || getCookie('openid');
 			// 获取url参数
 			function getQueryString(name) {
@@ -171,8 +169,8 @@
 				}
 				return '';
             }
-            console.log("OPEN-ID：");
-            console.log(this.openid);
+           
+            this.getData();
 		}
 	}
 

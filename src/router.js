@@ -21,7 +21,7 @@ let routes = [
     {
         path: '/physical',
         component: PhysicalPage,
-        name: '体侧成绩',
+        name: '体测成绩',
         hidden: true
     },
     {
