@@ -14,7 +14,7 @@
 	</div>
 	<!-- built files will be auto injected -->
 </body>
-<!-- <script>
+<script>
 	(function () {
 		if (location.hash !== '#/help') {
 			var str = window.location.href;
@@ -60,8 +60,7 @@
 			function redirect() {
 				var hash = location.hash;
 				var page = location.href;
-					page = page.replace(hash, '#/home');
-				
+					// page = page.replace(hash, '#/physical');
 
 				var redirectUri = "https://api.guangyangyundong.com/api/users/wechatAuth";
 				redirectUri = encodeURIComponent(redirectUri);
@@ -70,7 +69,7 @@
 				// var appId = "wx8e8661fdfc08da2d";//光氧运动账号
 				// var appId = "wx2c8f990778df47a3";//欧旭的账号
 				window.location.href = 'http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8e8661fdfc08da2d&redirect_uri='
-					+  redirectUri + page + '&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
+				+  redirectUri + page + '&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
 			}
 
 			// 设置cookies, hours为过期时间
@@ -110,6 +109,6 @@
 			}
 		}
 	}());
-</script> -->
+</script>
 
 </html>

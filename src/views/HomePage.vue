@@ -206,7 +206,6 @@
 				return '';
 			}
 			console.log(this.openid);
-			alert("this.openid: " + this.openid);
 		}
 	}
 
