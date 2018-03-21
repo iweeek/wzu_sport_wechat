@@ -23,23 +23,30 @@
 			<p v-if="passError" class="error-msg">{{passErrorMsg}}</p>
 			<p class="protocol">
 				<el-checkbox v-model="agree"></el-checkbox>
-				我已认真阅读并接受光氧运动的 <a href="javascript:;" @click="agreeVisible = true">《用户协议》</a>
+				我已认真阅读并接受光氧运动的 <a href="javascript:;" @click="openDialog()">《用户协议》</a>
 			</p>
-			<el-dialog
-				title="用户协议"
-				:visible.sync="agreeVisible"
-				size="large">
-				<span class="agree-content">《腾讯游戏许可及服务协议》（以下简称“本协议”）由您与腾讯游戏服务提供方共同缔结，本协议具有合同效力。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制腾讯责任的条款、对用户权利进行限制的条款、约定争议解决方式和司法管辖的条款，以及开通或使用某项服务的单独协议。前述限制、免责及争议解决方式和管辖条款可能以黑体加粗或其他合理方式提示您注意。
-						除非您已阅读并接受本协议所有条款，否则您无权使用腾讯游戏服务。您使用腾讯游戏服务即视为您已阅读并同意签署本协议。
-						如果您未满18周岁，请在法定监护人的陪同下阅读本协议，并特别注意未成年人使用条款。
-						一、【定义】
-						1.1 本协议：指本协议正文、《腾讯服务协议》、《QQ号码规则》、游戏规则及其修订版本。上述内容一经正式发布，即为本协议不可分割的组成部分。本协议同时还包括文化部根据《网络游戏管理暂行办法》（文化部令第49号）制定的《网络游戏服务格式化协议必备条款》。
-						1.2 游戏规则：指腾讯游戏服务提供方不时发布并修订的关于腾讯游戏的用户守则、玩家条例、游戏公告及通知等内容。
-						1.3 腾讯游戏服务提供方：指向您提供腾讯游戏及其服务的深圳市腾讯计算机系统有限公司，在本协议中简称为“腾讯”。
-						1.4 腾讯游戏：指由腾讯负责运营的游戏的统称，包括计算机客户端游戏、网页游戏、HTML5游戏（H5游戏）、移动终端游戏、电视端游戏以及其他形式的游戏；腾讯游戏可能以软件形式提供，这种情况下，腾讯游戏还包括该相关软件及相关文档。
-						1.5 腾讯游戏服务：指腾讯向您提供的与游戏相关的各项在线运营服务。
-						1.6 您：又称“玩家”或“用户”，指被授权使用腾讯游戏及其服务的自然人。
-						1.7 游戏数据：指您在使用腾讯游戏过程中产生的被服务器记录的各种数据，包括游戏日志、安全日志等数据。</span>
+			<el-dialog title="用户协议" :visible.sync="agreeVisible" size="large">
+				<div class="agree-content" id="agree-content">
+					1、条款的确认和接纳</br>
+					请务必认真阅读和理解《光氧运动App安装许可使用协议》，您一旦安装、复制、下载、访问或者以其他方式使用本软件产品，将视为对本协议的接受，即表示您同意接收本《协议各项条款的约束》。</br>
+
+					2、光氧运动App课外锻炼加入了第二层防作弊参数，能有效监控学生的跑步情况。若采用自行车、电动车、滑板车等交通工具或者一人带多只手机等作弊行为，如被App后台或人工监控发现不正常数据，则本次跑步次数作废，如本学期出现3次以上此类情况，本学期课外锻炼分为0分,严重者以作弊行为上报教务处处理。</br>
+
+					3、课外锻炼次数要求：15周内完成规定次数（见评价表），锻炼时间由学生自行安排，每人每天可以跑多次，有效刷卡一天只能算一次。请在规定时间内完成打卡次数，超出规定时间，则按照不合格处理。</br>
+
+					4、用户必须做好参加锻炼的各项准备工作，包括穿合适的运动服、运动鞋，充足的睡眠、合理的营养等，做好跑前热身运动和跑后的放松运动。锻炼中有任何不适，应停止锻炼，尽快到校内医务室就诊。</br>
+
+					5、用户使用本产品时，应注意自身安全，防止摔倒。当用户出现摔打、手机掉落、手机碎屏、遭到他人侵犯等情形时，一切责任由用户自己或侵权方承担，光氧运动App及其运营者不承担任何责任。</br>
+
+					6、用户可通过手机App及时查询自己相关课外锻炼信息，如对成绩记录、软件及其他信息有疑问，请通过微信公众号联系客服。</br>
+
+					7、光氧运动App及运营商不能保证网络服务的持续性、及时性、安全性、满意度；同时也不能保证信息准确、及时传送等，即使用户正当使用光氧运动App仍有所遭受损失的可能，该损失由用户自行承担，光氧运动App及其运营商不承担任何责任。</br>
+
+					8、用户在使用光氧运动App时须遵守所有使用网络会员服务的网络协议、服务规则和程序；不得干扰网络服务，不得未经许可而非法进入其他手机系统。</br>
+				</div>
+				<span slot="footer" class="dialog-footer">
+					<el-button :disabled="!isBottom" @click="agreeProtocol()">同意协议</el-button>
+				</span>
 			</el-dialog>
 		</div>
 		<el-button @click="step == 1 ? next() : submit()" :disabled="isLoading || (step == 2 && !agree) ">{{step == 1 ? '下一步' : '提交'}}</el-button>
@@ -50,6 +57,7 @@
 	import resources from '../resources'
 	import md5 from 'js-md5'
 	import { Loading, Message } from 'element-ui'
+	import $ from 'jquery'
 
 	const universitiesQuery = `
 	{
@@ -83,7 +91,7 @@
 				openid: '',
 				agreeVisible: false,
 				isLoading: false,
-				agree: false, 
+				agree: false,
 				universities: [],
 				loginForm: {
 					// 测试账号: 15210231110 name: 林金鸿
@@ -96,7 +104,8 @@
 				userId: '',
 				verifyError: false, // 学号与姓名验证结果
 				passError: false,
-				passErrorMsg: ''
+				passErrorMsg: '',
+				isBottom: false,
 			}
 		},
 		watch: {
@@ -106,7 +115,7 @@
 					this.verifyError = false;
 					this.passError = false;
 				},
-				deep: true //对象内部的属性监听，也叫深度监听  
+				deep: true //对象内部的属性监听，也叫深度监听
 			}
 		},
 		methods: {
@@ -202,6 +211,24 @@
 				})
 
 			},
+			openDialog() {
+				let _this = this;
+				this.agreeVisible = true;
+				setTimeout(function() {
+					document.getElementById("agree-content").addEventListener("scroll", function(){
+						var $this = $(this),
+						viewH = $this.height(),//可见高度
+						contentH = $this.get(0).scrollHeight,//内容高度
+						scrollTop = $this.scrollTop();//滚动高度
+						if(scrollTop / (contentH - viewH) >= 0.95){ //到达底部100px时,加载新内容
+							_this.isBottom = true;
+						}
+					});
+				}, 200);
+			},
+			agreeProtocol() {
+				this.agreeVisible = false;this.agree = true;
+			}
 		},
 		mounted: function () {
 			this.getUniversities();
