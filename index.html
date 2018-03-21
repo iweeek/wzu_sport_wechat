@@ -17,7 +17,6 @@
 <script>
 	(function () {
 		if (location.hash !== '#/help') {
-			alert(JSON.stringify(location));
 			var str = window.location.href;
 			// 设置全局变量，接口主机名和重定向函数
 			window.authUrl = '192.168.0.112:8080';
@@ -27,25 +26,21 @@
 			console.debug('openid:' + getQueryString('openid'));
 			if (getQueryString('openid')) {
 				console.debug('has openid')
-				alert('has openid');
 				setCookie('openid', getQueryString('openid'), 2);
 
 				// window.location.replace(removeUrlParams(['openid']));
 				// window.location.hash = "home";
 			} else {
 				console.debug('has no openid')
-				alert('no openid');
 				// 查看cookies里查看一下是否有openid,有的话直接往下走，没有的话去后台获取
 				var openid = getCookie('openid');
 				if (openid && openid != "undefined") {
 					console.debug('has cookie', window.location.href, window.location.href.indexOf('?'));
-					alert('has cookie')
 					if (window.location.href.indexOf('?') == -1) {
 						window.location.replace(window.location.href.split('#')[0] + '?#' + (window.location.href.split('#')[1] || ''));
 					}
 					window.location.hash = "home";
 				} else {
-					alert('no cookie')
 					redirect();
 				}
 			}
@@ -65,35 +60,16 @@
 			function redirect() {
 				var hash = location.hash;
 				var page = location.href;
-<<<<<<< HEAD
-					page = page.replace(hash, '#/home');
-||||||| merged common ancestors
-					page = page.replace(hash, '#/home');
-				
-=======
 					// page = page.replace(hash, '#/physical');
->>>>>>> f_1383
 
-
-				var redirectUri = "http://sport.o-xugroup.com/api/users/wechatAuth";
+				var redirectUri = "https://api.guangyangyundong.com/api/users/wechatAuth";
 				redirectUri = encodeURIComponent(redirectUri);
 				page = "?page=" + encodeURIComponent(page);
 				page = encodeURIComponent(page);
 				// var appId = "wx8e8661fdfc08da2d";//光氧运动账号
 				// var appId = "wx2c8f990778df47a3";//欧旭的账号
-<<<<<<< HEAD
-				alert(page);
-				alert(redirectUri)
-				window.location.href = 'http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2c8f990778df47a3&redirect_uri='
-					+  redirectUri + page + '&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
-				alert(111)
-||||||| merged common ancestors
-				window.location.href = 'http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8e8661fdfc08da2d&redirect_uri='
-					+  redirectUri + page + '&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
-=======
 				window.location.href = 'http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8e8661fdfc08da2d&redirect_uri='
 				+  redirectUri + page + '&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
->>>>>>> f_1383
 			}
 
 			// 设置cookies, hours为过期时间
