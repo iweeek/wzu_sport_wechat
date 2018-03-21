@@ -233,6 +233,7 @@
 		mounted: function () {
 			this.getUniversities();
 			this.openid = getQueryString('openid') || getCookie('openid');
+			console.log("this.openid" + this.openid);
 			// 获取url参数
 			function getQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -254,6 +255,7 @@
 				}
 				return '';
 			}
+			console.log(this.openid);
 		}
 	}
 
