@@ -4,7 +4,7 @@
             <div class="top-title">
                 {{physicalTest.collegeName}}    {{physicalTest.className}}
                 <br/>
-                {{physicalTest.studentNo}}  {{physicalTest.studentName}}的体测查询</div>
+                {{physicalTest.studentNo}}  {{physicalTest.studentName}} 体测查询</div>
         </div>
         <div class="second-title">
             <!-- <div class="label"></div> -->
